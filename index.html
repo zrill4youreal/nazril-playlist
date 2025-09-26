@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Nazril — Playlist</title>
+  <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
+  <style>
+    :root{--accent:#111;--muted:#6b6b6b;--card:#fff;--bg:#fff8f2;}
+    body{font-family:'Patrick Hand', system-ui, Arial; background:var(--bg); color:var(--accent); padding:32px;}
+    .container{max-width:700px;margin:0 auto;}
+    header{text-align:center;margin-bottom:20px;}
+    .logo{width:80px;height:80px;border-radius:50%;border:4px solid #000;margin:0 auto;display:flex;align-items:center;justify-content:center;font-size:40px}
+    h1{font-size:40px;margin:10px 0 4px}
+    .subtitle{color:var(--muted);margin-bottom:12px}
+    .note{text-align:center;color:var(--muted);margin-bottom:10px;font-size:14px}
+    .playlist{display:flex;flex-direction:column;gap:12px;margin-bottom:24px}
+    .song{border:2px dashed #222;background:var(--card);padding:14px;border-radius:10px;display:flex;justify-content:space-between;align-items:center;cursor:pointer}
+    .song .meta{display:flex;flex-direction:column}
+    .song .title{font-weight:700;font-size:18px}
+    .song .artist{color:var(--muted);font-size:13px}
+    footer{text-align:center;color:var(--muted);margin-top:26px;font-size:13px}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">🎧</div>
+      <h1>Nazril Clutch</h1>
+      <div class="subtitle">Playlist lagu yang Enak!</div>
+    </header>
+
+    <div class="note">⬅️ ⏵ ⏸ ⏭️ — Jika ingin memutar lagu, klik judul lagu</div>
+
+    <section class="playlist" aria-label="playlist">
+      <div class="song" data-src="https://b.top4top.io/m_3556lo4u00.mp4">
+        <div class="meta">
+          <div class="title">Demons</div>
+          <div class="artist">Imagine Dragons</div>
+        </div>
+        <div>▶️</div>
+      </div>
+
+      <div class="song" data-src="https://f.top4top.io/m_3556d2hx50.mp4">
+        <div class="meta">
+          <div class="title">Starboy</div>
+          <div class="artist">The Weeknd</div>
+        </div>
+        <div>▶️</div>
+      </div>
+
+      <div class="song" data-src="https://j.top4top.io/m_3556e30si0.m4a">
+        <div class="meta">
+          <div class="title">Sunday Best</div>
+          <div class="artist">Surface</div>
+        </div>
+        <div>▶️</div>
+      </div>
+
+      <div class="song" data-src="https://e.top4top.io/m_3556iiur10.mp4">
+        <div class="meta">
+          <div class="title">Est Ce Que Tu M'aimes</div>
+          <div class="artist">Maitre Gims</div>
+        </div>
+        <div>▶️</div>
+      </div>
+
+      <div class="song" data-src="https://l.top4top.io/m_3556xevc20.mp4">
+        <div class="meta">
+          <div class="title">Y Que Fue</div>
+          <div class="artist">Don Miguelo</div>
+        </div>
+        <div>▶️</div>
+      </div>
+    </section>
+
+    <div class="card" style="padding:12px;border:2px solid #222;border-radius:10px;background:#fff">
+      <audio id="player" controls style="width:100%">
+        <source src="https://b.top4top.io/m_3556lo4u00.mp4" type="audio/mp4">
+        Browser Anda tidak mendukung audio.
+      </audio>
+    </div>
+
+    <footer>© Instagram : @nzril1lhm_</footer>
+  </div>
+
+  <script>
+    // Simple interaction: clicking a song loads the audio source to the small player
+    document.querySelectorAll('.song').forEach(function(el){
+      el.addEventListener('click', function(){
+        var src = el.getAttribute('data-src');
+        var player = document.getElementById('player');
+        if(src){
+          player.pause();
+          player.querySelector('source').src = src;
+          player.load();
+          player.play().catch(function(){});
+          document.querySelectorAll('.song').forEach(function(s){ s.style.opacity = '1'; });
+          el.style.opacity = '0.7';
+        } else {
+          alert('Sumber audio belum diatur untuk lagu ini.');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
